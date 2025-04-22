@@ -20,6 +20,6 @@ spec:
               number: 80
   tls:
   - hosts:
-    - super-mario.com
+    - mario.vkcoder.xyz
     secretName: super-mario-tls
   # secretName should be created in the same namespace as the Ingress resource
