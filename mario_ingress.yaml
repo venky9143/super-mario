@@ -3,8 +3,9 @@ kind: Ingress
 metadata:
   name: super-mario
   namespace: super-mario
-  labels:
-    app: super-mario
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/listen-ports: ip
 spec:
   rules:
   - host: mario.vkcoder.xyz
