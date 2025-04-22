@@ -1,12 +1,15 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: super-mario
   namespace: super-mario
+  labels:
+    app: super-mario
+  name: super-mario
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/listen-ports: ip
+    alb.ingress.kubernetes.io/target-type: ip
 spec:
+  ingressClassName: alb
   rules:
   - host: mario.vkcoder.xyz
     http:
@@ -15,11 +18,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: super-mario
+            name: service-2048
             port:
               number: 80
-  tls:
-  - hosts:
-    - mario.vkcoder.xyz
-    secretName: super-mario-tls
-  # secretName should be created in the same namespace as the Ingress resource
