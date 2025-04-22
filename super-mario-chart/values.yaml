@@ -1,0 +1,24 @@
+replicaCount: 2
+
+image:
+  repository: venkateshkesa/super-mario-fixed
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  className: alb
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    alb.ingress.kubernetes.io/group.name: super-mario-group
+  hosts:
+  - host: mario.vkcoder.xyz
+    paths:
+    - path: /
+      pathType: Prefix

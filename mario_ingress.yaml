@@ -1,13 +1,15 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  name: super-mario-ingress
   namespace: super-mario
   labels:
     app: super-mario
-  name: super-mario
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/backend-protocol: HTTP
+    kubernetes.io/ingress.class: alb
 spec:
   ingressClassName: alb
   rules:
@@ -18,6 +20,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: service-2048
+            name: super-mario-service
             port:
               number: 80

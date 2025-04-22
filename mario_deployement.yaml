@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: super-mario
-        image: venkateshkesa/sper-mario
+        image: venkateshkesa/super-mario-fixed:latest
         ports:
-        - containerPort: 80
+        - containerPort: 8080
