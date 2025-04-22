@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: super-mario
+  namespace: super-mario
+  labels:
+    app: super-mario
+spec:
+  rules:
+  - host: mario.vkcoder.xyz
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: super-mario
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - super-mario.com
+    secretName: super-mario-tls
+  # secretName should be created in the same namespace as the Ingress resource

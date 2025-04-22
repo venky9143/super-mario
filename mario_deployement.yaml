@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: super-mario
+  namespace: super-mario
+  labels:
+    app: super-mario
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: super-mario
+  template:
+    metadata:
+      labels:
+        app: super-mario
+    spec:
+      containers:
+      - name: super-mario
+        image: venkateshkesa/sper-mario
+        ports:
+        - containerPort: 80
